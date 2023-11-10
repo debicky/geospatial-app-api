@@ -53,6 +53,7 @@ gem 'bootsnap', require: false
 gem 'grape'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+gem 'rack-cors'
 gem 'rubocop'
 
 group :development, :test do
