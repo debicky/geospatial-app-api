@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   mount GrapeSwaggerRails::Engine => '/api/docs'
-  mount Geospatial::Api, at: "/"
+  mount Geospatial::V1::Tickets => '/api/v1'
 end
