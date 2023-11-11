@@ -23,7 +23,6 @@ Style/Documentation:
 Style/FetchEnvVar:
   Exclude:
     - 'bin/bundle'
-    - 'bin/spring'
 
 Style/NumericLiterals:
   Exclude:

@@ -184,6 +184,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.1.0)
     parallel (1.23.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -335,6 +336,7 @@ DEPENDENCIES
   grape-swagger-rails
   importmap-rails
   jbuilder
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
   rack-cors
