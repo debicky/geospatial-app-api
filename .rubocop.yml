@@ -1,1 +1,38 @@
 inherit_from: .rubocop_todo.yml
+
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Exclude:
+    - 'db/**/*'
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/schema.rb'
+    - 'app/api/geospatial/v1/tickets.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FetchEnvVar:
+  Exclude:
+    - 'bin/bundle'
+    - 'bin/spring'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/SymbolArray:
+  Exclude:
+    - 'db/**/*'
+
+Style/WordArray:
+  Exclude:
+    - 'db/schema.rb'

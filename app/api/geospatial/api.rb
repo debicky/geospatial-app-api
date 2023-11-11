@@ -5,7 +5,7 @@ module Geospatial
     helpers Geospatial::Helpers
 
     mount Geospatial::V1::Tickets
-    
+
     version 'v1', using: :path
     format :json
     prefix :api

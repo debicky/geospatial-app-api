@@ -3,10 +3,12 @@
 module Geospatial
   module V1
     class Tickets < Grape::API
+      helpers Geospatial::Helpers
+
       resource :tickets do
         desc 'Create a Ticket with Excavator', {
           failure: [
-            { code: 422, message: 'Unprocessable entity' },
+            { code: 422, message: 'Unprocessable entity' }
           ]
         }
         params do
@@ -27,7 +29,7 @@ module Geospatial
         end
 
         post do
-          service_call = ::Tickets::Create.call(declared(params, include_missing: false))
+          service_call = ::Tickets::Create.call(declared_params)
 
           if service_call[:error]
             error!({ message: result[:error] }, 422)
