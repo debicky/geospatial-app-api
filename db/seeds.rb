@@ -9,4 +9,4 @@ Excavator.destroy_all
   FactoryBot.create(:ticket, :with_excavator)
 end
 
-puts "Created 3 Tickets with associated Excavators."
+puts 'Created 3 Tickets with associated Excavators.'

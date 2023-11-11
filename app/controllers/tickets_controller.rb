@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TicketsController < ApplicationController
   def index
     @pagy, @tickets = pagy(Ticket.includes(:excavator).all, items: 10)

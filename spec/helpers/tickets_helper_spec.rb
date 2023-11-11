@@ -1,15 +1,22 @@
-require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the TicketsHelper. For example:
-#
-# describe TicketsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe TicketsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#crew_on_site_present?' do
+    subject(:crew_status) { helper.crew_on_site_present?(excavator) }
+
+    context 'when crew is on site' do
+      let(:excavator) { create(:excavator, crew_on_site: true) }
+
+      it 'returns Yes' do
+        expect(crew_status).to eq('Yes')
+      end
+    end
+
+    context 'when crew is not on site' do
+      let(:excavator) { create(:excavator, crew_on_site: false) }
+
+      it 'returns No' do
+        expect(crew_status).to eq('No')
+      end
+    end
+  end
 end
