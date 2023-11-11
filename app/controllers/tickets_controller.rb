@@ -2,7 +2,7 @@
 
 class TicketsController < ApplicationController
   def index
-    @pagy, @tickets = pagy(Ticket.includes(:excavator).all, items: 10)
+    @pagy, @tickets = pagy(Ticket.includes(:excavator).all, items: 3)
   end
 
   def show

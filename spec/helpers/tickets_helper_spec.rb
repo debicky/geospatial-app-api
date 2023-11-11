@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 RSpec.describe TicketsHelper, type: :helper do
   describe '#crew_on_site_present?' do

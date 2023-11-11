@@ -12,9 +12,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_110_115_532) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_10_115532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+  enable_extension 'postgis'
 
   create_table 'excavators', force: :cascade do |t|
     t.string 'company_name'
@@ -34,7 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 20_231_110_115_532) do
     t.datetime 'response_due_date_time'
     t.string 'primary_service_area_code'
     t.string 'additional_service_area_codes', default: [], array: true
-    t.text 'well_known_text'
+    t.geography 'well_known_text', limit: { srid: 4326, type: 'st_polygon', geographic: true }
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end

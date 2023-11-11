@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'factory_bot_rails'
+require_relative '../spec/support/polygon_generator'
 
 Ticket.destroy_all
 Excavator.destroy_all
 
-3.times do
+9.times do
   FactoryBot.create(:ticket, :with_excavator)
 end
 
