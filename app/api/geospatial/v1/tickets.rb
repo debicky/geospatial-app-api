@@ -27,8 +27,10 @@ module Geospatial
             end
           end
 
-          requires :DigsiteInfo, type: Hash do
-            requires :WellKnownText, type: String
+          requires :ExcavationInfo, type: Hash do
+            requires :DigsiteInfo, type: Hash do
+              requires :WellKnownText, type: String
+            end
           end
 
           requires :Excavator, type: Hash do

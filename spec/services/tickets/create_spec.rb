@@ -32,8 +32,10 @@ RSpec.describe Tickets::Create, type: :service do
               SACode: additional_service_area_codes.sa_code
             }
           },
-          DigsiteInfo: {
-            WellKnownText: digsite_info.well_known_text
+          ExcavationInfo: {
+            DigsiteInfo: {
+              WellKnownText: digsite_info.well_known_text
+            }
           },
           Excavator: {
             CompanyName: excavator.company_name,

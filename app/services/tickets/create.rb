@@ -48,7 +48,7 @@ module Tickets
     end
 
     def extract_digsite_info_attributes
-      { well_known_text: @params[:DigsiteInfo][:WellKnownText] }
+      { well_known_text: @params[:ExcavationInfo][:DigsiteInfo][:WellKnownText] }
     end
 
     def extract_date_time_attributes
