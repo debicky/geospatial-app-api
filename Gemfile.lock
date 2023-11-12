@@ -58,6 +58,9 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
+    activerecord-postgis-adapter (9.0.1)
+      activerecord (~> 7.1.0)
+      rgeo-activerecord (~> 7.0.0)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -99,6 +102,11 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    diff-lcs (1.5.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     dry-core (1.0.1)
@@ -116,6 +124,13 @@ GEM
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     grape (1.8.0)
@@ -152,6 +167,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mapkick-rb (0.1.5)
     marcel (1.0.2)
     matrix (0.4.2)
     mini_mime (1.1.5)
@@ -176,6 +192,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.1.0)
     parallel (1.23.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -190,6 +207,8 @@ GEM
     rack (3.0.8)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -234,6 +253,27 @@ GEM
     reline (0.4.0)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rgeo (3.0.0)
+    rgeo-activerecord (7.0.1)
+      activerecord (>= 5.0)
+      rgeo (>= 1.0.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.3)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubocop (1.57.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -254,6 +294,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -296,19 +338,28 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   bootsnap
   capybara
   debug
+  dotenv-rails
+  factory_bot_rails
+  faker
   grape
   grape-swagger
   grape-swagger-rails
   importmap-rails
   jbuilder
+  mapkick-rb
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.1)
+  rspec-rails
   rubocop
   selenium-webdriver
+  shoulda-matchers
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
