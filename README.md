@@ -14,14 +14,13 @@ These instructions will get your copy of the project up and running on your loca
 3. Environment Setup
 
    Create a .env file and fill it with data.
+
+   App uses mapkick-rb gem. We need to set:
    ```
-   App uses mapkick-rb gem.
-   We need to set MAPBOX_ACCESS_TOKEN=yourToken.
-   
-   Follow up instructions: 
-   https://github.com/ankane/mapkick#installation
+   MAPBOX_ACCESS_TOKEN=yourToken.
    ```
-   
+   Follow up instructions:
+   https://github.com/ankane/mapkick#installation   
 4. Create a database & run the migration.
    
    `rails db:setup`
