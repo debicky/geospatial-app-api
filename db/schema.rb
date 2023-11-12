@@ -12,33 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_10_115532) do
+ActiveRecord::Schema[7.1].define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
-  enable_extension 'postgis'
-
-  create_table 'excavators', force: :cascade do |t|
-    t.string 'company_name'
-    t.string 'address'
-    t.boolean 'crew_on_site'
-    t.bigint 'ticket_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['ticket_id'], name: 'index_excavators_on_ticket_id'
-  end
-
-  create_table 'tickets', force: :cascade do |t|
-    t.string 'request_number'
-    t.string 'sequence_number'
-    t.string 'request_type'
-    t.string 'request_action'
-    t.datetime 'response_due_date_time'
-    t.string 'primary_service_area_code'
-    t.string 'additional_service_area_codes', default: [], array: true
-    t.geography 'well_known_text', limit: { srid: 4326, type: 'st_polygon', geographic: true }
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
-
-  add_foreign_key 'excavators', 'tickets'
 end

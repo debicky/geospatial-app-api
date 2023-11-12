@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PolygonGenerator
   def self.generate_polygon_around_point(central_lat, central_lon, radius, sides = 5)
     points = (1..sides).map do |i|
