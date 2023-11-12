@@ -4,14 +4,16 @@ module Tickets
   class Create < BaseService
     def initialize(params)
       @params = params
+      @ticket = Ticket.new
     end
 
     def call
       Ticket.transaction do
-        ticket = create_ticket
-        create_related_entities_for(ticket)
-        { status: :created, message: 'Ticket and Excavator created successfully.', ticket_id: ticket.id }
+        create_ticket
+        create_related_entities_for
       end
+
+      { status: :created, message: 'Ticket and Excavator created successfully.', ticket_id: @ticket.id }
     rescue ActiveRecord::RecordInvalid => e
       { status: :unprocessable_entity, error: e.message }
     end
@@ -19,14 +21,15 @@ module Tickets
     private
 
     def create_ticket
-      Ticket.create!(extract_ticket_attributes)
+      @ticket.assign_attributes(extract_ticket_attributes)
+      @ticket.save!
     end
 
-    def create_related_entities_for(ticket)
-      ticket.create_excavator!(extract_excavator_attributes)
-      ticket.create_digsite_info!(extract_digsite_info_attributes)
-      ticket.create_ticket_date_time!(extract_date_time_attributes)
-      create_service_area_and_codes(ticket)
+    def create_related_entities_for
+      @ticket.create_excavator!(extract_excavator_attributes)
+      @ticket.create_digsite_info!(extract_digsite_info_attributes)
+      @ticket.create_ticket_date_time!(extract_date_time_attributes)
+      create_service_area_and_codes(@ticket)
     end
 
     def extract_ticket_attributes

@@ -41,7 +41,7 @@ module Geospatial
         end
 
         post do
-          service_call = ::Tickets::Create.call(declared(params, include_missing: false))
+          service_call = ::Tickets::Create.call(declared_params)
 
           if service_call[:error]
             error!({ message: service_call[:error] }, 422)
