@@ -7,9 +7,43 @@ RSpec.describe Tickets::Create, type: :service do
     subject(:create_ticket) { described_class.call(params) }
 
     context 'when valid parameters are provided' do
-      let(:ticket_attributes) { attributes_for(:ticket) }
-      let(:excavator_attributes) { attributes_for(:excavator) }
-      let(:params) { ticket_attributes.merge(excavator: excavator_attributes) }
+      let(:ticket) { build(:ticket) }
+      let(:excavator) { build(:excavator, ticket:) }
+      let(:ticket_date_time) { build(:ticket_date_time, ticket:) }
+      let(:service_area) { build(:service_area, ticket:) }
+      let(:primary_service_area_code) { build(:primary_service_area_code, service_area:) }
+      let(:additional_service_area_codes) { build(:additional_service_area_code, service_area:) }
+      let(:digsite_info) { build(:digsite_info, ticket:) }
+
+      let(:params) do
+        {
+          RequestNumber: ticket.request_number,
+          SequenceNumber: ticket.sequence_number,
+          RequestType: ticket.request_type,
+          RequestAction: ticket.request_action,
+          DateTimes: {
+            ResponseDueDateTime: ticket_date_time.response_due_date_time
+          },
+          ServiceArea: {
+            PrimaryServiceAreaCode: {
+              SACode: primary_service_area_code.sa_code
+            },
+            AdditionalServiceAreaCodes: {
+              SACode: additional_service_area_codes.sa_code
+            }
+          },
+          ExcavationInfo: {
+            DigsiteInfo: {
+              WellKnownText: digsite_info.well_known_text
+            }
+          },
+          Excavator: {
+            CompanyName: excavator.company_name,
+            Address: excavator.address,
+            CrewOnsite: excavator.crew_on_site
+          }
+        }
+      end
 
       it 'creates a ticket and an excavator' do
         expect { create_ticket }.to change { Ticket.count }.by(1)

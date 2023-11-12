@@ -6,25 +6,37 @@ module Geospatial
       helpers Geospatial::Helpers
 
       resource :tickets do
-        desc 'Create a Ticket with Excavator', {
-          failure: [
-            { code: 422, message: 'Unprocessable entity' }
-          ]
-        }
-        params do
-          requires :request_number, type: String
-          requires :sequence_number, type: String
-          requires :request_type, type: String
-          requires :request_action, type: String
-          requires :response_due_date_time, type: DateTime
-          requires :primary_service_area_code, type: String
-          requires :additional_service_area_codes, type: Array[String]
-          requires :well_known_text, type: String
+        desc 'Create a Ticket with Excavator', failure: [{ code: 422, message: 'Unprocessable entity' }]
 
-          requires :excavator, type: Hash do
-            requires :company_name, type: String
-            requires :address, type: String
-            requires :crew_on_site, type: Boolean
+        params do
+          requires :RequestNumber, type: String
+          requires :SequenceNumber, type: String
+          requires :RequestType, type: String
+          requires :RequestAction, type: String
+
+          requires :DateTimes, type: Hash do
+            requires :ResponseDueDateTime, type: DateTime
+          end
+
+          requires :ServiceArea, type: Hash do
+            requires :PrimaryServiceAreaCode, type: Hash do
+              requires :SACode, type: String
+            end
+            requires :AdditionalServiceAreaCodes, type: Hash do
+              requires :SACode, type: Array[String]
+            end
+          end
+
+          requires :ExcavationInfo, type: Hash do
+            requires :DigsiteInfo, type: Hash do
+              requires :WellKnownText, type: String
+            end
+          end
+
+          requires :Excavator, type: Hash do
+            requires :CompanyName, type: String
+            requires :Address, type: String
+            optional :CrewOnsite, type: Boolean, default: false
           end
         end
 
@@ -32,7 +44,7 @@ module Geospatial
           service_call = ::Tickets::Create.call(declared_params)
 
           if service_call[:error]
-            error!({ message: result[:error] }, 422)
+            error!({ message: service_call[:error] }, 422)
           else
             status 201
             present :message, 'Ticket and Excavator created successfully.'

@@ -1,0 +1,24 @@
+<div class="container mx-auto mt-8">
+  <div class="bg-white p-8 rounded-md w-full">
+    <div class="flex items-center justify-between pb-6">
+      <div>
+        <h2 class="text-gray-600 font-semibold">Ticket Detail</h2>
+        <span class="text-xs">Request Number: <%= @ticket.request_number %></span>
+      </div>
+      <div>
+        <%= link_to 'Back to Tickets', tickets_path(page: params[:page]), class: "px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded text-white" %>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-semibold text-gray-600">Excavator Information</h3>
+      <p class="mt-2 text-gray-600"><strong>Company Name:</strong> <%= @ticket.excavator.company_name %></p>
+      <p class="text-gray-600"><strong>Address:</strong> <%= @ticket.excavator.address %></p>
+      <p class="text-gray-600"><strong>Crew on Site:</strong> <%= crew_on_site_present?(@ticket.excavator) %></p>
+    </div>
+    
+    <div>
+      <%= area_map [{geometry: {type: "Polygon", coordinates: @ticket.digsite_info.well_known_text.coordinates}}] %>
+    </div>
+  </div>
+</div>

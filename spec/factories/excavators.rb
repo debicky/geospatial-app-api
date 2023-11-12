@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :excavator do
+    association :ticket
     company_name { Faker::Company.name }
     address { Faker::Address.full_address }
     crew_on_site { Faker::Boolean.boolean }
-    association :ticket
   end
 end
