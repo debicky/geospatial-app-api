@@ -2,6 +2,7 @@
 
 class Ticket < ApplicationRecord
   has_one :excavator, dependent: :destroy
+  has_one :service_area, dependent: :destroy
 
   validates :request_number, presence: true
   validates :sequence_number, presence: true

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateDateTimes < ActiveRecord::Migration[7.1]
+class CreatTicketDateTimes < ActiveRecord::Migration[7.1]
   def change
-    create_table :date_times do |t|
+    create_table :ticket_date_times do |t|
       t.references :ticket, null: false, foreign_key: true
       t.datetime :response_due_date_time
 
