@@ -2,5 +2,6 @@
 
 class PrimaryServiceAreaCode < ApplicationRecord
   belongs_to :service_area
-  # ... validations ...
+
+  validates :sa_code, presence: true
 end

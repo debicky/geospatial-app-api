@@ -12,6 +12,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'db/schema.rb'
     - 'app/api/geospatial/v1/tickets.rb'
+    - 'config/environments/development.rb'
 
 Metrics/MethodLength:
   Exclude:
